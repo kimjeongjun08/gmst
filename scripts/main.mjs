@@ -26,23 +26,6 @@ function runPreloader() {
   });
 }
 
-// ── Custom cursor ─────────────────────────────────────────
-function initCursor() {
-  if (matchMedia('(pointer: coarse)').matches) { document.body.classList.add('touch'); return; }
-  const ring = $('[data-cursor]'); const dot = $('[data-cursor-dot]');
-  let rx = 0, ry = 0, x = 0, y = 0;
-  addEventListener('pointermove', (e) => { x = e.clientX; y = e.clientY; }, { passive: true });
-  (function loop() {
-    rx += (x - rx) * 0.18; ry += (y - ry) * 0.18;
-    if (ring) ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
-    if (dot) dot.style.transform = `translate(${x}px,${y}px) translate(-50%,-50%)`;
-    requestAnimationFrame(loop);
-  })();
-  const sel = 'a, button, [data-tilt], [data-magnetic]';
-  document.addEventListener('pointerover', (e) => { if (e.target.closest(sel)) ring?.classList.add('is-hover'); });
-  document.addEventListener('pointerout', (e) => { if (e.target.closest(sel)) ring?.classList.remove('is-hover'); });
-}
-
 // ── Nav + scroll rail ─────────────────────────────────────
 function initNav() {
   const nav = $('[data-nav]'); const fill = $('[data-scrollfill]');
@@ -104,7 +87,6 @@ function initCounters() {
 
 // ── Boot ──────────────────────────────────────────────────
 async function boot() {
-  initCursor();
   initNav();
   initCloudField($('[data-cloudfield]'));
   await render();            // build DOM from data before observing reveals

@@ -1,21 +1,23 @@
 html, body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: var(--s-0); }
-body { overflow-x: hidden; cursor: none; }
-body.touch { cursor: auto; }
+body { overflow-x: hidden; }
 
-/* ambient backdrop */
+/* ambient backdrop — 아주 옅은 하늘빛 */
 body::before {
   content: ""; position: fixed; inset: 0; z-index: -2;
   background:
-    radial-gradient(55% 45% at 85% -10%, color-mix(in srgb, var(--violet) 20%, transparent), transparent 70%),
-    radial-gradient(50% 40% at 5% 5%, color-mix(in srgb, var(--cyan) 14%, transparent), transparent 70%),
+    radial-gradient(55% 45% at 85% -8%, color-mix(in srgb, var(--blue) 9%, transparent), transparent 70%),
+    radial-gradient(50% 40% at 3% 4%, color-mix(in srgb, var(--cyan) 8%, transparent), transparent 70%),
     var(--bg);
 }
 body::after {
-  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .5;
-  background-image: radial-gradient(circle, color-mix(in srgb, var(--text) 4%, transparent) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(70% 60% at 50% 20%, #000, transparent 90%);
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .6;
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--text) 5%, transparent) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(70% 55% at 50% 15%, #000, transparent 90%);
 }
+
+/* 카드 공통 입체감 (밝은 배경용) */
+.bcard, .ccard, .task, .prize, .perk2, .flow__step, .ladder__step, .compare__card, .agenda__list a, .tl { box-shadow: var(--card-shadow); }
 
 .section { padding-block: clamp(3rem, 7vw, 6rem); padding-inline: var(--gutter); }
 .shead { max-width: 52ch; margin-inline: auto; text-align: center; margin-bottom: clamp(2rem, 5vw, 3.4rem); }
@@ -27,7 +29,7 @@ body::after {
 /* buttons */
 .btn { display: inline-flex; align-items: center; gap: .5em; padding: .8em 1.4em; border-radius: 999px; font-weight: 600; font-size: var(--s--1); transition: transform .3s var(--ease), box-shadow .3s var(--ease), background .3s, color .3s, border-color .3s; will-change: transform; }
 .btn--lg { padding: .95em 1.7em; font-size: var(--s-0); }
-.btn--primary { background: var(--grad); color: #04121a; box-shadow: var(--glow); }
+.btn--primary { background: var(--grad); color: #fff; box-shadow: var(--glow); }
 .btn--primary:hover { transform: translateY(-2px); box-shadow: 0 0 60px color-mix(in srgb, var(--cyan) 60%, transparent); }
 .btn--line { border: 1px solid var(--line); color: var(--text); }
 .btn--line:hover { border-color: var(--cyan); color: var(--cyan); }
@@ -46,10 +48,7 @@ body::after {
 /* scroll rail + cursor */
 .scroll-rail { position: fixed; inset: 0 0 auto 0; height: 2px; z-index: 900; }
 .scroll-rail i { display: block; height: 100%; width: 0; background: var(--grad); box-shadow: var(--glow); }
-.cursor, .cursor-dot { position: fixed; top: 0; left: 0; z-index: 950; pointer-events: none; border-radius: 50%; transform: translate(-50%, -50%); mix-blend-mode: difference; }
-.cursor { width: 32px; height: 32px; border: 1.5px solid #fff; transition: width .25s var(--ease), height .25s var(--ease), background .25s; }
-.cursor-dot { width: 5px; height: 5px; background: #fff; }
-.cursor.is-hover { width: 54px; height: 54px; background: color-mix(in srgb, #fff 12%, transparent); }
+/* (커스텀 커서 제거됨 — 기본 포인터 사용) */
 
 /* nav */
 .nav { position: fixed; inset: 0 0 auto 0; z-index: 800; display: flex; align-items: center; gap: 1.5rem; padding: .9rem var(--gutter); border-bottom: 1px solid transparent; transition: background .4s, backdrop-filter .4s, border-color .4s; }
@@ -96,7 +95,7 @@ body::after {
 .compare__card--old { opacity: .78; }
 .compare__card--new { border-color: color-mix(in srgb, var(--cyan) 45%, var(--line)); background: linear-gradient(160deg, color-mix(in srgb, var(--cyan) 10%, var(--surface)), var(--surface)); box-shadow: 0 30px 80px -40px color-mix(in srgb, var(--cyan) 45%, transparent); }
 .compare__tag { font-family: var(--font-mono); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--text-mute); border: 1px solid var(--line); border-radius: 999px; padding: .25rem .6rem; }
-.compare__tag--hot { color: #04121a; background: var(--grad); border: none; }
+.compare__tag--hot { color: #fff; background: var(--grad); border: none; }
 .compare__card h3 { font-family: var(--font-disp); font-size: var(--s-2); margin: 1rem 0 .7rem; }
 .compare__card p { color: var(--text-dim); font-size: var(--s--1); margin-bottom: 1rem; }
 .compare__card ul { display: grid; gap: .4rem; }
@@ -199,6 +198,8 @@ body::after {
 .task__tags span { font-family: var(--font-mono); font-size: .7rem; color: var(--text-mute); border: 1px solid var(--line); border-radius: 999px; padding: .25rem .6rem; }
 .task__try { display: inline-block; margin-top: 1.1rem; color: var(--cyan); font-size: var(--s--1); font-weight: 600; }
 .task__try:hover { text-decoration: underline; }
+.task--text { grid-template-columns: 1fr; }
+.task--text .task__body { max-width: 74ch; }
 
 /* 상금 */
 .prizes { max-width: var(--maxw); margin: 0 auto 1.3rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }

@@ -8,7 +8,7 @@ export function initCloudField(canvas) {
   const ctx = canvas.getContext('2d', { alpha: true });
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const COLORS = ['#22d3ee', '#3b82f6', '#a78bfa', '#34d399'];
+  const COLORS = ['#2563eb', '#0891b2', '#60a5fa'];
   let dpr = Math.min(devicePixelRatio || 1, 2);
   let w = 0, h = 0;
   let nodes = [];
@@ -26,7 +26,7 @@ export function initCloudField(canvas) {
 
   function seed() {
     // density scales with area, capped for performance
-    const count = Math.min(120, Math.max(36, Math.round((w * h) / 14000)));
+    const count = Math.min(80, Math.max(28, Math.round((w * h) / 20000)));
     nodes = Array.from({ length: count }, () => ({
       x: Math.random() * w,
       y: Math.random() * h,
@@ -68,8 +68,8 @@ export function initCloudField(canvas) {
         const dx = a.x - b.x, dy = a.y - b.y;
         const dist = Math.hypot(dx, dy);
         if (dist < LINK) {
-          const alpha = (1 - dist / LINK) * 0.5;
-          ctx.strokeStyle = `rgba(90,160,230,${alpha})`;
+          const alpha = (1 - dist / LINK) * 0.28;
+          ctx.strokeStyle = `rgba(37,99,235,${alpha})`;
           ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
@@ -80,12 +80,12 @@ export function initCloudField(canvas) {
     // nodes
     for (const n of nodes) {
       ctx.beginPath();
+      ctx.globalAlpha = 0.7;
       ctx.fillStyle = n.c;
-      ctx.shadowColor = n.c; ctx.shadowBlur = 8;
       ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
       ctx.fill();
     }
-    ctx.shadowBlur = 0;
+    ctx.globalAlpha = 1;
   }
 
   let raf, visible = true;

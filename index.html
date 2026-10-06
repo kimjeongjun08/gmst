@@ -49,8 +49,6 @@
   </div>
 
   <div class="scroll-rail" aria-hidden="true"><i data-scrollfill></i></div>
-  <div class="cursor" data-cursor aria-hidden="true"></div>
-  <div class="cursor-dot" data-cursor-dot aria-hidden="true"></div>
 
   <header class="nav" data-nav>
     <a class="nav__brand" href="#top" aria-label="홈">
@@ -67,7 +65,6 @@
       <a href="#awards">혜택</a>
     </nav>
     <button class="nav__present" type="button" data-present-toggle aria-pressed="false">▶ 발표 모드</button>
-    <a class="nav__link-cta" href="playground.html">체험 ↗</a>
   </header>
 
   <main id="top">
@@ -82,7 +79,7 @@
           전국기능경기대회 클라우드컴퓨팅 직종에 나갑니다.</p>
         <div class="hero__cta" data-reveal>
           <a class="btn btn--primary btn--lg" href="#cloud" data-magnetic>무엇을 하는 반인가</a>
-          <a class="btn btn--line btn--lg" href="playground.html">과제 직접 체험 ↗</a>
+          <a class="btn btn--line btn--lg" href="#tasks">우리가 푸는 과제</a>
         </div>
         <dl class="hero__stats" data-reveal>
           <div><dt>직종</dt><dd>클라우드컴퓨팅</dd></div>
@@ -241,6 +238,17 @@
         </div>
       </article>
 
+      <article class="task task--text" data-reveal>
+        <div class="task__body">
+          <span class="task__badge">과제 2 · 예시</span>
+          <h3>자동 배포 파이프라인(CI/CD) 구축</h3>
+          <p>개발자가 코드를 올리면 빌드 → 테스트 → 배포가 자동으로 이어지도록 구성합니다.
+             사람이 손으로 배포하지 않아도 항상 최신 버전이 안전하게 반영됩니다.
+             (예: 코드 푸시 → 자동 빌드 → <span class="term" data-k="컨테이너">컨테이너</span> 이미지 생성 → 서버에 무중단 배포)</p>
+          <div class="task__tags"><span>CI/CD</span><span>자동화</span><span>컨테이너</span><span>무중단 배포</span></div>
+        </div>
+      </article>
+
       <article class="task task--rev" data-reveal>
         <div class="task__img"><img src="assets/task3.png" alt="과제 3 아키텍처" loading="lazy" /></div>
         <div class="task__body">
@@ -250,7 +258,6 @@
              <code>/v1/stress</code>로 요청을 나눠 처리합니다. user·product 데이터는 관계형 데이터베이스(RDS)에 저장하고,
              부하 테스트(stress)까지 다룹니다. 백엔드 API의 기본기를 그대로 담은 과제입니다.</p>
           <div class="task__tags"><span>REST API</span><span>Routing</span><span>RDS</span><span>Relational DB</span><span>Load Test</span></div>
-          <a class="task__try" href="playground.html">이 과제, 브라우저에서 직접 호출해보기 →</a>
         </div>
       </article>
 
@@ -318,10 +325,10 @@
     <section class="section closing" id="closing">
       <div class="closing__inner" data-reveal>
         <h2 class="closing__title">클라우드로<br />증명하고 싶다면</h2>
-        <p class="closing__sub">우리가 무엇을 만드는지 직접 눌러보세요. 관심이 있다면 담당 선생님이나 동아리로 문의하면 됩니다.</p>
+        <p class="closing__sub">클라우드에 관심이 있다면, 담당 선생님이나 동아리로 문의하세요.</p>
         <div class="closing__cta">
-          <a class="btn btn--primary btn--lg" href="playground.html" data-magnetic>과제 직접 체험하기 →</a>
-          <a class="btn btn--line btn--lg" href="#tasks">과제 다시 보기</a>
+          <a class="btn btn--primary btn--lg" href="#tasks" data-magnetic>우리가 푸는 과제 보기</a>
+          <a class="btn btn--line btn--lg" href="#top">처음으로</a>
         </div>
       </div>
     </section>
@@ -333,7 +340,7 @@
       <span>GMST CLOUD</span>
     </div>
     <p class="footer__desc">공주마이스터고등학교 · 클라우드컴퓨팅 전공심화동아리 기능반</p>
-    <p class="footer__desc"><a href="playground.html">API 체험 ↗</a> · <a href="qr.html">발표용 QR</a></p>
+    <p class="footer__desc"><a href="qr.html">발표용 QR</a></p>
   </footer>
 
   <script type="module" src="scripts/main.mjs"></script>
