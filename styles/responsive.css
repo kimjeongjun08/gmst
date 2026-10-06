@@ -7,8 +7,9 @@
   .flow, .ladder { grid-template-columns: 1fr; }
   .flow__wire, .ladder__arrow { transform: rotate(90deg); justify-self: center; }
   .compare { grid-template-columns: 1fr; }
-  .compare__vs { justify-self: center; }
-  .cards3, .apps, .perks { grid-template-columns: 1fr; }
+  .compare__vs { justify-self: center; transform: rotate(90deg); }
+  .cards3, .perks, .prizes, .perks2 { grid-template-columns: 1fr; }
+  .task, .task--rev .task__img { grid-template-columns: 1fr; order: 0; }
 }
 
 @media (max-width: 560px) {

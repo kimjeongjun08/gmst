@@ -56,23 +56,15 @@ function initNav() {
 
 // ── Content rendering ─────────────────────────────────────
 async function render() {
-  const [apps, careers, curriculum] = await Promise.all([
-    fetch('data/apps.json').then((r) => r.json()).catch(() => []),
+  const [careers, curriculum] = await Promise.all([
     fetch('data/careers.json').then((r) => r.json()).catch(() => []),
     fetch('data/curriculum.json').then((r) => r.json()).catch(() => []),
   ]);
 
-  const appsEl = $('[data-apps]');
-  if (appsEl) appsEl.innerHTML = apps.map((a) => `
-    <li class="app" data-reveal>
-      <span class="app__emoji">${a.emoji}</span>
-      <span><h4>${a.name}</h4><p>${a.desc}</p></span>
-    </li>`).join('');
-
   const careersEl = $('[data-careers]');
   if (careersEl) careersEl.innerHTML = careers.map((c) => `
     <article class="ccard" data-tilt data-reveal>
-      <div class="ccard__top"><span class="ccard__ico">${c.icon}</span><h3>${c.title}</h3></div>
+      <h3>${c.title}</h3>
       <p>${c.desc}</p>
       <div class="ccard__tags">${c.tags.map((t) => `<span>${t}</span>`).join('')}</div>
     </article>`).join('');
@@ -110,52 +102,6 @@ function initCounters() {
   els.forEach((el) => io.observe(el));
 }
 
-// ── Join CTA ──────────────────────────────────────────────
-function initJoin() {
-  const btn = $('[data-join-apply]'); const note = $('[data-join-note]');
-  btn?.addEventListener('click', (e) => {
-    e.preventDefault();
-    burstConfetti();
-    if (note) note.textContent = '🎉 관심 감사합니다! 상담 신청 폼은 준비 중이에요 — 담당 선생님 또는 동아리에 문의해 주세요.';
-  });
-  // celebratory confetti when the join section first appears
-  const sec = $('#join');
-  if (sec) {
-    const io = new IntersectionObserver(([en]) => { if (en.isIntersecting) { burstConfetti(); io.disconnect(); } }, { threshold: 0.4 });
-    io.observe(sec);
-  }
-}
-
-let confettiRaf;
-function burstConfetti() {
-  if (reduce) return;
-  const canvas = $('[data-confetti]'); if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const dpr = Math.min(devicePixelRatio, 2);
-  canvas.width = canvas.offsetWidth * dpr; canvas.height = canvas.offsetHeight * dpr;
-  const colors = ['#22d3ee', '#3b82f6', '#a78bfa', '#34d399', '#fbbf24'];
-  const parts = Array.from({ length: 130 }, () => ({
-    x: canvas.width / 2, y: canvas.height * 0.42,
-    vx: (Math.random() - 0.5) * 17 * dpr, vy: (Math.random() - 1.1) * 15 * dpr,
-    g: 0.38 * dpr, life: 1, size: (2 + Math.random() * 4) * dpr,
-    color: colors[(Math.random() * colors.length) | 0], rot: Math.random() * 6, vr: (Math.random() - 0.5) * 0.3,
-  }));
-  cancelAnimationFrame(confettiRaf); // stop any previous burst before starting
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    let alive = false;
-    for (const p of parts) {
-      p.vy += p.g; p.x += p.vx; p.y += p.vy; p.vx *= 0.99; p.life -= 0.012; p.rot += p.vr;
-      if (p.life <= 0) continue; alive = true;
-      ctx.save(); ctx.globalAlpha = Math.max(p.life, 0); ctx.translate(p.x, p.y); ctx.rotate(p.rot);
-      ctx.fillStyle = p.color; ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6); ctx.restore();
-    }
-    if (alive) confettiRaf = requestAnimationFrame(draw);
-    else ctx.clearRect(0, 0, canvas.width, canvas.height);
-  }
-  draw();
-}
-
 // ── Boot ──────────────────────────────────────────────────
 async function boot() {
   initCursor();
@@ -168,7 +114,6 @@ async function boot() {
   initTilt();
   initScrollSpy();
   initCounters();
-  initJoin();
   initGlossary();   // jargon tooltips (after render so tags exist)
   initPresenter();  // section nav + 발표 모드
   initGsap();

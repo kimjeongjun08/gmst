@@ -4,9 +4,9 @@
 // with a prev / "n / total" / next control bar. Press P or F to toggle, Esc to exit.
 
 const LABELS = {
-  hero: '시작', agenda: '순서', about: '클라우드란', analogy: '쉽게 말하면',
-  benefits: '장점', life: '우리의 일상', career: '진로', curriculum: '커리큘럼',
-  awards: '수상·혜택', join: '지원',
+  hero: '시작', agenda: '목차', cloud: '클라우드란', analogy: '쉽게 말하면',
+  competition: '전국대회', club: '기능반', tasks: '과제', career: '진로',
+  curriculum: '커리큘럼', awards: '수상·혜택', closing: '마무리',
 };
 
 export function initPresenter() {

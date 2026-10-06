@@ -17,9 +17,9 @@
   --text-dim:  #a6b5d1;
   --text-mute: #64748b;
 
-  --grad:      linear-gradient(120deg, var(--cyan), var(--blue) 55%, var(--violet));
-  --grad-text: linear-gradient(120deg, #d9fbff, var(--cyan) 40%, var(--violet));
-  --glow:      0 0 42px color-mix(in srgb, var(--cyan) 42%, transparent);
+  --grad:      linear-gradient(110deg, var(--cyan), var(--blue));
+  --grad-text: linear-gradient(110deg, #eaf6ff, var(--cyan));
+  --glow:      0 10px 34px -12px color-mix(in srgb, var(--blue) 55%, transparent);
 
   --font:      "Pretendard", system-ui, sans-serif;
   --font-disp: "Space Grotesk", "Pretendard", sans-serif;
