@@ -1,0 +1,58 @@
+/* GMST Cloud — presentation mode, section nav, glossary, agenda, callouts */
+
+/* clean landing for anchor / keyboard / dot navigation (nav is hidden in present mode) */
+html:not(.presenting) main > section { scroll-margin-top: 68px; }
+
+/* ── Agenda (오늘의 순서) ── */
+.agenda__list { max-width: var(--maxw); margin-inline: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: .8rem; }
+.agenda__list a { display: flex; gap: .8rem; align-items: center; padding: 1rem 1.15rem; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); color: var(--text); transition: transform .3s var(--ease), border-color .3s, background .3s; }
+.agenda__list a:hover { transform: translateX(5px); border-color: color-mix(in srgb, var(--cyan) 45%, var(--line)); background: color-mix(in srgb, var(--cyan) 7%, var(--surface)); }
+.agenda__list b { font-family: var(--font-disp); color: var(--cyan); font-size: var(--s-1); }
+
+/* ── "쉽게 말하면" callout ── */
+.plain { max-width: var(--maxw); margin: 1.6rem auto 0; padding: 1rem 1.25rem; border-left: 3px solid var(--mint); background: color-mix(in srgb, var(--mint) 8%, var(--surface)); border-radius: 0 12px 12px 0; color: var(--text-dim); font-size: var(--s-0); }
+.plain b { color: var(--mint); margin-right: .45rem; }
+
+/* ── Glossary term + tooltip ── */
+.term { border-bottom: 1.5px dotted color-mix(in srgb, var(--cyan) 75%, transparent); cursor: help; transition: color .2s; }
+.term:hover, .term:focus-visible { color: var(--cyan); outline: none; }
+.gloss-pop { position: fixed; z-index: 970; max-width: 290px; background: var(--surface); border: 1px solid color-mix(in srgb, var(--cyan) 38%, var(--line)); border-radius: 12px; padding: .75rem .9rem; font-size: .82rem; line-height: 1.55; color: var(--text-dim); box-shadow: 0 24px 60px -24px #000; opacity: 0; transform: translateY(6px); transition: opacity .18s, transform .18s; pointer-events: none; }
+.gloss-pop.show { opacity: 1; transform: none; }
+.gloss-pop b { display: block; margin-bottom: .25rem; color: var(--text); font-family: var(--font-disp); }
+
+/* ── Section dots (right side) ── */
+.dots { position: fixed; right: clamp(.6rem, 1.5vw, 1.2rem); top: 50%; transform: translateY(-50%); z-index: 820; display: grid; gap: .55rem; }
+.dots button { width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid var(--line); background: transparent; padding: 0; position: relative; transition: background .3s, border-color .3s, transform .3s; }
+.dots button:hover { transform: scale(1.25); border-color: var(--cyan); }
+.dots button.active { background: var(--grad); border-color: transparent; box-shadow: var(--glow); }
+.dots button::after { content: attr(data-label); position: absolute; right: 22px; top: 50%; transform: translateY(-50%); white-space: nowrap; font-size: .72rem; color: var(--text-dim); background: var(--surface); border: 1px solid var(--line); padding: .22rem .55rem; border-radius: 7px; opacity: 0; pointer-events: none; transition: opacity .2s; }
+.dots button:hover::after { opacity: 1; }
+
+/* ── Present toggle button in nav ── */
+.nav__present { margin-left: auto; display: inline-flex; align-items: center; gap: .4rem; font-size: var(--s--1); color: var(--text-dim); border: 1px solid var(--line); border-radius: 999px; padding: .5rem .85rem; transition: color .3s, border-color .3s; }
+.nav__cta { margin-left: 0 !important; }
+.nav__present:hover { color: var(--cyan); border-color: var(--cyan); }
+
+/* ── Keyboard hint toast ── */
+.kbhint { position: fixed; bottom: 1rem; left: 1rem; z-index: 840; font-size: .72rem; color: var(--text-mute); background: var(--surface-2); border: 1px solid var(--line-soft); padding: .45rem .8rem; border-radius: 999px; backdrop-filter: blur(8px); transition: opacity .6s, transform .6s; display: flex; gap: .5rem; align-items: center; }
+.kbhint.hide { opacity: 0; transform: translateY(10px); pointer-events: none; }
+.kbhint kbd { font-family: var(--font-mono); color: var(--text-dim); border: 1px solid var(--line); border-radius: 5px; padding: 0 .35rem; background: var(--surface); }
+
+/* ── Presentation control bar ── */
+.present-bar { position: fixed; bottom: 1.1rem; left: 50%; transform: translateX(-50%); z-index: 860; display: none; gap: .4rem; align-items: center; background: color-mix(in srgb, var(--surface) 92%, transparent); border: 1px solid var(--line); border-radius: 999px; padding: .4rem .6rem; backdrop-filter: blur(12px); box-shadow: 0 20px 50px -24px #000; }
+.present-bar button { color: var(--text); width: 36px; height: 36px; border-radius: 50%; display: grid; place-content: center; font-size: 1.1rem; transition: background .25s; }
+.present-bar button:hover { background: var(--surface-2); }
+.present-bar__count { font-family: var(--font-mono); font-size: .82rem; color: var(--text-dim); min-width: 6ch; text-align: center; font-variant-numeric: tabular-nums; }
+.present-bar__exit { color: var(--text-mute) !important; }
+
+/* ── Presentation mode layout (each section ~ a slide) ── */
+html.presenting { scroll-snap-type: y proximity; scroll-padding-top: 0; }
+.presenting .present-bar { display: flex; }
+.presenting .nav { opacity: 0; pointer-events: none; }
+.presenting .kbhint { display: none; }
+.presenting main > section { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; scroll-snap-align: start; padding-block: clamp(4rem, 8vh, 7rem); }
+.presenting .hero { min-height: 100svh; }
+
+@media (max-width: 900px) { .dots { display: none; } }
+@media (hover: none), (pointer: coarse) { .dots button::after { display: none; } }
+@media (prefers-reduced-motion: reduce) { .kbhint { transition: none; } }

@@ -1,0 +1,19 @@
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, currentColor 70%, transparent); } 70% { box-shadow: 0 0 0 9px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes cue { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(12px); opacity: 0; } 100% { opacity: 0; } }
+@keyframes packet { 0%, 100% { opacity: .2; transform: scale(.8); } 50% { opacity: 1; transform: scale(1.3); } }
+@keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+/* reveal on scroll */
+[data-reveal] { opacity: 0; transform: translateY(26px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+[data-reveal].in { opacity: 1; transform: none; }
+
+/* split text */
+[data-split] .line { display: block; overflow: hidden; }
+[data-split] .char { display: inline-block; transform: translateY(110%); opacity: 0; transition: transform 1s var(--ease), opacity 1s var(--ease); }
+[data-split].in .char { transform: none; opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal], [data-split] .char { opacity: 1 !important; transform: none !important; }
+  .dot, .hero__cue span, .flow__wire i { animation: none !important; }
+}

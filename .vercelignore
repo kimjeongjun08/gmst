@@ -1,0 +1,4 @@
+# 정적 배포(Vercel)에는 백엔드 서버 폴더를 포함하지 않습니다.
+# 3과제 체험 API 서버는 Render 등에 별도로 배포하세요 (server/README 참고).
+server/
+ark/

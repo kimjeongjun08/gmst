@@ -1,0 +1,23 @@
+@media (max-width: 1024px) {
+  .careers { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 860px) {
+  .nav__links { display: none; }
+  .flow, .ladder { grid-template-columns: 1fr; }
+  .flow__wire, .ladder__arrow { transform: rotate(90deg); justify-self: center; }
+  .compare { grid-template-columns: 1fr; }
+  .compare__vs { justify-self: center; }
+  .cards3, .apps, .perks { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .hero__cta, .join__cta { flex-direction: column; align-items: stretch; }
+  .hero__cta .btn, .join__cta .btn { justify-content: center; }
+  .tl { grid-template-columns: 1fr; }
+}
+
+@media (hover: none), (pointer: coarse) {
+  body { cursor: auto; }
+  .cursor, .cursor-dot { display: none; }
+}

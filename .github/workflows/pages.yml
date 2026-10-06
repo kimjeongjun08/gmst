@@ -1,0 +1,33 @@
+name: Deploy to GitHub Pages
+
+# gmst/ 루트가 곧 사이트 루트(index.html). public 폴더 없이 전체를 올립니다.
+# 백엔드(server/)는 Pages에서 실행되지 않지만 정적 파일로 함께 올라가도 무해합니다.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,13 @@
+{
+  "name": "공주마이스터고 클라우드컴퓨팅 기능반",
+  "short_name": "GMST Cloud",
+  "description": "컴퓨터를 사는 시대에서 빌리는 시대로.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#080c18",
+  "theme_color": "#080c18",
+  "icons": [
+    { "src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

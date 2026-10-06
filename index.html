@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>공주마이스터고 클라우드컴퓨팅 기능반</title>
+  <meta name="description" content="컴퓨터를 사는 시대에서 빌리는 시대로. 공주마이스터고 클라우드컴퓨팅 전공심화동아리 기능반 — 네트워크부터 AWS, 전국·세계 기능경기대회까지." />
+  <meta name="theme-color" content="#0a0f1e" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="공주마이스터고 클라우드컴퓨팅 기능반" />
+  <meta property="og:description" content="클라우드는 세상을 돌리는 보이지 않는 엔진입니다. 그 엔진을 직접 다루고, 세계 무대에서 겨룹니다." />
+  <meta property="og:image" content="assets/og.svg" />
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="manifest.webmanifest" />
+
+  <!-- Pretendard (Korean) + Space Grotesk (display/numerals) + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles/reset.css" />
+  <link rel="stylesheet" href="styles/variables.css" />
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="styles/animations.css" />
+  <link rel="stylesheet" href="styles/presenter.css" />
+  <link rel="stylesheet" href="styles/responsive.css" />
+
+  <script type="importmap">
+  {
+    "imports": {
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/index.js",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/ScrollTrigger.js"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <!-- ░░ Preloader ░░ -->
+  <div id="preloader" class="preloader" aria-hidden="true">
+    <div class="preloader__cloud">
+      <svg viewBox="0 0 120 80" width="92" aria-hidden="true">
+        <path class="preloader__path" d="M30 60 a18 18 0 0 1 2-35 a24 24 0 0 1 46 6 a16 16 0 0 1 -4 31 z" />
+      </svg>
+    </div>
+    <div class="preloader__label"><span data-boot>CONNECTING TO CLOUD</span><b data-pct>0%</b></div>
+    <div class="preloader__bar"><i data-barfill></i></div>
+  </div>
+
+  <div class="scroll-rail" aria-hidden="true"><i data-scrollfill></i></div>
+  <div class="cursor" data-cursor aria-hidden="true"></div>
+  <div class="cursor-dot" data-cursor-dot aria-hidden="true"></div>
+
+  <!-- ░░ Nav ░░ -->
+  <header class="nav" data-nav>
+    <a class="nav__brand" href="#top" aria-label="홈">
+      <svg class="nav__logo" viewBox="0 0 40 28" width="30" aria-hidden="true">
+        <path d="M11 24 a8 8 0 0 1 1-15 a11 11 0 0 1 21 3 a7 7 0 0 1 -2 12 z" />
+      </svg>
+      <span>GMST <b>CLOUD</b></span>
+    </a>
+    <nav class="nav__links" aria-label="주요">
+      <a href="#about">클라우드란</a>
+      <a href="#benefits">장점</a>
+      <a href="#life">우리의 일상</a>
+      <a href="#career">진로</a>
+      <a href="#curriculum">커리큘럼</a>
+      <a href="#awards">수상·혜택</a>
+      <a href="playground.html">체험 ↗</a>
+    </nav>
+    <button class="nav__present" type="button" data-present-toggle aria-pressed="false">▶ 발표 모드</button>
+    <a class="btn btn--primary nav__cta" href="#join" data-magnetic>지원하기</a>
+  </header>
+
+  <main id="top">
+    <!-- ░░ Hero ░░ -->
+    <section class="hero" id="hero">
+      <canvas class="hero__canvas" data-cloudfield aria-hidden="true"></canvas>
+      <div class="hero__veil" aria-hidden="true"></div>
+      <div class="hero__inner">
+        <p class="hero__eyebrow" data-reveal><i class="dot"></i> 공주마이스터고 · 클라우드컴퓨팅 전공심화동아리</p>
+        <h1 class="hero__title" data-split>컴퓨터를 사는 시대에서,<br />빌리는 <em>시대로.</em></h1>
+        <p class="hero__sub" data-reveal>클라우드는 세상을 조용히 돌리는 보이지 않는 엔진입니다.<br />
+          기능반에서 그 엔진을 직접 다루고 — 지역에서 전국으로, 전국에서 세계로 겨룹니다.</p>
+        <div class="hero__cta" data-reveal>
+          <a class="btn btn--primary btn--lg" href="#about" data-magnetic>기능반 알아보기</a>
+          <a class="btn btn--line btn--lg" href="#join">지원 방법 ↗</a>
+        </div>
+        <dl class="hero__stats" data-reveal>
+          <div><dt>교육 과정</dt><dd>3개년 트랙</dd></div>
+          <div><dt>겨루는 무대</dt><dd>지역 · 전국 · 세계</dd></div>
+          <div><dt>목표</dt><dd>AWS 자격 · 기능올림픽</dd></div>
+        </dl>
+      </div>
+      <a class="hero__cue" href="#about" aria-label="아래로"><span></span></a>
+    </section>
+
+    <!-- ░░ Agenda ░░ -->
+    <section class="section agenda" id="agenda">
+      <header class="shead" data-reveal>
+        <p class="shead__kicker">오늘의 순서</p>
+        <h2 class="shead__title">클라우드, 하나도 몰라도<br /><em>괜찮습니다.</em></h2>
+        <p class="shead__lead">아래 순서대로, 전부 쉬운 말로 설명합니다. 본문에서 <span class="term" data-k="클라우드">밑줄 친 단어</span>에
+          마우스를 올리면(또는 탭하면) 뜻풀이가 나와요.</p>
+      </header>
+      <ol class="agenda__list">
+        <li><a href="#about" data-reveal><b>01</b> 클라우드가 뭐예요?</a></li>
+        <li><a href="#analogy" data-reveal><b>02</b> 한 문장으로 쉽게</a></li>
+        <li><a href="#benefits" data-reveal><b>03</b> 왜 다들 쓸까</a></li>
+        <li><a href="#life" data-reveal><b>04</b> 내 일상 속 클라우드</a></li>
+        <li><a href="#career" data-reveal><b>05</b> 어떤 직업을 가질까</a></li>
+        <li><a href="#curriculum" data-reveal><b>06</b> 3년 커리큘럼</a></li>
+        <li><a href="#awards" data-reveal><b>07</b> 대회·수상·혜택</a></li>
+      </ol>
+    </section>
+
+    <!-- ░░ What is Cloud ░░ -->
+    <section class="section about" id="about">
+      <header class="shead" data-reveal>
+        <p class="shead__kicker">클라우드란?</p>
+        <h2 class="shead__title">내 기기에서 데이터센터까지,<br />눈 깜짝할 사이에.</h2>
+        <p class="shead__lead">내 손안의 기기는 화면일 뿐, 진짜 계산은 저 멀리 거대한 데이터센터가 합니다.
+          그 사이를 잇는 게 바로 클라우드예요.</p>
+      </header>
+
+      <div class="flow" data-flow>
+        <article class="flow__step" data-step="1" data-reveal>
+          <div class="flow__icon">📱</div>
+          <h3>1 · 내 기기</h3>
+          <p>폰·노트북·태블릿에서 요청을 보냅니다. 기기는 가벼운 "창구" 역할만 해요.</p>
+        </article>
+        <div class="flow__wire" aria-hidden="true"><i></i><i></i><i></i></div>
+        <article class="flow__step" data-step="2" data-reveal>
+          <div class="flow__icon">🌐</div>
+          <h3>2 · 인터넷</h3>
+          <p>요청이 광케이블을 타고 수천 km를 1초 안에 달려갑니다.</p>
+        </article>
+        <div class="flow__wire" aria-hidden="true"><i></i><i></i><i></i></div>
+        <article class="flow__step" data-step="3" data-reveal>
+          <div class="flow__icon">🏢</div>
+          <h3>3 · <span class="term" data-k="데이터센터">데이터센터</span></h3>
+          <p>Amazon·Google·Microsoft의 <span class="term" data-k="서버">서버</span>가 실제 연산을 하고 결과만 돌려보냅니다.</p>
+        </article>
+      </div>
+      <p class="plain" data-reveal><b>💡 쉽게 말하면</b> 내 폰은 "리모컨", 진짜 무거운 계산은 멀리 있는 "본체(데이터센터)"가 대신 해주는 거예요.</p>
+    </section>
+
+    <!-- ░░ Power analogy ░░ -->
+    <section class="section analogy" id="analogy">
+      <header class="shead" data-reveal>
+        <p class="shead__kicker">쉽게 말하면</p>
+        <h2 class="shead__title">발전기를 사지 마세요.<br /><em>콘센트</em>를 쓰세요.</h2>
+      </header>
+      <div class="compare">
+        <article class="compare__card compare__card--old" data-reveal>
+          <span class="compare__tag">예전 방식</span>
+          <h3>공장마다 발전기</h3>
+          <p>회사마다 <span class="term" data-k="서버">서버</span>를 직접 사서 설치하고, 고장·전기·보안까지 전부 떠안았습니다.
+             비싸고, 느리고, 번거로웠죠.</p>
+          <ul><li>막대한 초기 비용</li><li>직접 관리·유지보수</li><li>남아도 못 돌려받음</li></ul>
+        </article>
+        <div class="compare__vs" aria-hidden="true">VS</div>
+        <article class="compare__card compare__card--new" data-reveal>
+          <span class="compare__tag compare__tag--hot">클라우드</span>
+          <h3>필요한 만큼, 꽂아 쓰기</h3>
+          <p>전기처럼 콘센트에 꽂아 필요한 만큼만 쓰고, 쓴 만큼만 냅니다.
+             언제나 안정적이고, 즉시 켜집니다.</p>
+          <ul><li>초기 투자 거의 0</li><li>관리는 클라우드가</li><li>쓴 만큼만 과금</li></ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ░░ Benefits ░░ -->
+    <section class="section benefits" id="benefits">
+      <header class="shead" data-reveal>
+        <p class="shead__kicker">장점</p>
+        <h2 class="shead__title">왜 세상이 전부<br />클라우드로 옮겨갈까.</h2>
+      </header>
+      <div class="cards3">
+        <article class="bcard" data-tilt data-reveal>
+          <div class="bcard__num">01</div>
+          <h3>압도적인 비용 효율</h3>
+          <p>서버실도, 수억 원짜리 장비도 필요 없습니다. 스타트업도 카드 한 장으로 세계적 <span class="term" data-k="인프라">인프라</span>를 씁니다.</p>
+        </article>
+        <article class="bcard" data-tilt data-reveal>
+          <div class="bcard__num">02</div>
+          <h3>고무줄처럼 늘어나는 확장</h3>
+          <p>이용자가 10명이든 1,000만 명이든, <span class="term" data-k="트래픽">트래픽</span>에 맞춰 몇 초 만에 자동으로 늘고 줄어듭니다.</p>
+        </article>
+        <article class="bcard" data-tilt data-reveal>
+          <div class="bcard__num">03</div>
+          <h3>어디서나 매끄러운 접속</h3>
+          <p>폰에서 보던 걸 노트북에서 그대로. 모든 기기가 같은 데이터에 실시간으로 연결됩니다.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ░░ Our daily life ░░ -->
+    <section class="section life" id="life">
+      <header class="shead" data-reveal>
+        <p class="shead__kicker">우리의 일상</p>
+        <h2 class="shead__title">당신은 이미<br />클라우드 위에 살고 있다.</h2>
+        <p class="shead__lead">오늘 하루 쓴 서비스들, 전부 클라우드 위에서 돌아갑니다.</p>
+      </header>
+      <ul class="apps" data-apps></ul>
+    </section>
+
+    <!-- ░░ Career ░░ -->
+    <section class="section career" id="career">
+      <header class="shead" data-reveal>
+        <p class="shead__kicker">진로</p>
+        <h2 class="shead__title">배우고 나면,<br />이런 전문가가 됩니다.</h2>
+        <p class="shead__lead">전 세계가 사람을 못 구해 안달인 직군들. 기능반 3년이 그 출발선입니다.</p>
+      </header>
+      <div class="careers" data-careers></div>
+      <p class="plain" data-reveal><b>💡 쉽게 말하면</b> 카드 속 작은 태그에 마우스를 올리면 뜻풀이가 나와요. 전부 지금 전 세계가 사람이 부족해 "모셔가는" 직업들입니다.</p>
+    </section>
+
+    <!-- ░░ Curriculum ░░ -->
+    <section class="section curri" id="curriculum">
+      <header class="shead" data-reveal>
+        <p class="shead__kicker">커리큘럼</p>
+        <h2 class="shead__title">3년, 차근차근<br />실무까지.</h2>
+      </header>
+      <ol class="timeline" data-timeline></ol>
+    </section>
+
+    <!-- ░░ Awards & privileges ░░ -->
+    <section class="section awards" id="awards">
+      <header class="shead" data-reveal>
+        <p class="shead__kicker">수상 · 혜택</p>
+        <h2 class="shead__title">지역에서 세계로.<br />오르는 만큼 돌아옵니다.</h2>
+      </header>
+
+      <div class="ladder" data-reveal>
+        <div class="ladder__step">
+          <span class="ladder__lv">LV.1</span>
+          <h3>지역 기능경기대회</h3>
+          <p>첫 무대. 시·도 대표를 가립니다.</p>
+        </div>
+        <div class="ladder__arrow" aria-hidden="true">→</div>
+        <div class="ladder__step">
+          <span class="ladder__lv">LV.2</span>
+          <h3>전국 기능경기대회</h3>
+          <p>전국의 최강들과. 입상 시 상금과 진학·취업 혜택.</p>
+        </div>
+        <div class="ladder__arrow" aria-hidden="true">→</div>
+        <div class="ladder__step ladder__step--top">
+          <span class="ladder__lv">LV.3</span>
+          <h3>국제기능올림픽</h3>
+          <p>세계 무대. 국가대표로 태극마크를 답니다.</p>
+        </div>
+      </div>
+
+      <div class="perks">
+        <article class="perk" data-reveal><div class="perk__big" data-count="1200" data-suffix="만+">0</div><p>입상 시 받을 수 있는 상금 (원)</p></article>
+        <article class="perk" data-reveal><div class="perk__big" data-count="100" data-suffix="%">0</div><p>원하는 기업·대학으로 가는 진로 가산점</p></article>
+        <article class="perk" data-reveal><div class="perk__big perk__big--star">병역특례</div><p>세계대회 수준 입상자 대상 혜택</p></article>
+      </div>
+    </section>
+
+    <!-- ░░ Join CTA ░░ -->
+    <section class="section join" id="join">
+      <canvas class="join__fx" data-confetti aria-hidden="true"></canvas>
+      <div class="join__inner" data-reveal>
+        <h2 class="join__title">세계가 무대다.<br />여기서 시작하자.</h2>
+        <p class="join__sub">클라우드에 진심인 사람을 찾습니다. 지금, 기능반의 문을 두드리세요.</p>
+        <div class="join__cta">
+          <a class="btn btn--primary btn--lg" href="playground.html" data-magnetic>직접 체험해보기 ↗</a>
+          <a class="btn btn--line btn--lg" href="#" data-join-apply>지원 상담 신청</a>
+        </div>
+        <p class="join__note" data-join-note></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__brand">
+      <svg viewBox="0 0 40 28" width="26" aria-hidden="true"><path d="M11 24 a8 8 0 0 1 1-15 a11 11 0 0 1 21 3 a7 7 0 0 1 -2 12 z" /></svg>
+      <span>GMST CLOUD</span>
+    </div>
+    <p class="footer__desc">공주마이스터고등학교 · 클라우드컴퓨팅 전공심화동아리 기능반</p>
+    <p class="footer__desc"><a href="playground.html" style="color:var(--cyan)">API 체험하기 ↗</a> · <a href="qr.html" style="color:var(--cyan)">발표용 QR 📱</a></p>
+    <p class="footer__fine">© 2026 GMST Cloud Club. 본 페이지는 동아리 소개용으로 제작되었습니다. 내용은 검토 중입니다.</p>
+  </footer>
+
+  <script type="module" src="scripts/main.mjs"></script>
+</body>
+</html>

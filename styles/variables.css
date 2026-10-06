@@ -1,0 +1,42 @@
+:root {
+  /* palette — night sky → aurora */
+  --bg:        #080c18;
+  --bg-2:      #0b1120;
+  --surface:   #101a30;
+  --surface-2: #16213c66;
+  --line:      #22304e;
+  --line-soft: #19243c;
+
+  --blue:      #3b82f6;
+  --cyan:      #22d3ee;
+  --mint:      #34d399;
+  --violet:    #a78bfa;
+  --amber:     #fbbf24;
+
+  --text:      #eaf0fb;
+  --text-dim:  #a6b5d1;
+  --text-mute: #64748b;
+
+  --grad:      linear-gradient(120deg, var(--cyan), var(--blue) 55%, var(--violet));
+  --grad-text: linear-gradient(120deg, #d9fbff, var(--cyan) 40%, var(--violet));
+  --glow:      0 0 42px color-mix(in srgb, var(--cyan) 42%, transparent);
+
+  --font:      "Pretendard", system-ui, sans-serif;
+  --font-disp: "Space Grotesk", "Pretendard", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --s--1: clamp(0.78rem, 0.75rem + 0.12vw, 0.86rem);
+  --s-0:  clamp(0.92rem, 0.89rem + 0.16vw, 1.02rem);
+  --s-1:  clamp(1.1rem, 1rem + 0.45vw, 1.32rem);
+  --s-2:  clamp(1.45rem, 1.2rem + 1.1vw, 2.15rem);
+  --s-3:  clamp(1.9rem, 1.45rem + 2vw, 3.1rem);
+  --s-4:  clamp(2.4rem, 1.75rem + 3vw, 4.4rem);
+
+  --maxw:   1120px;
+  --gutter: clamp(1.1rem, 4vw, 4rem);
+  --radius: 18px;
+  --radius-sm: 12px;
+  --ease:   cubic-bezier(.22, 1, .36, 1);
+
+  color-scheme: dark;
+}

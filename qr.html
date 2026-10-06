@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QR · 공주마이스터고 클라우드컴퓨팅 기능반</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/reset.css" />
+  <link rel="stylesheet" href="styles/variables.css" />
+  <style>
+    body { background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100svh; display: grid; place-content: center; justify-items: center; gap: 1.6rem; text-align: center; padding: 2rem; }
+    body::before { content: ""; position: fixed; inset: 0; z-index: -1; background: radial-gradient(60% 50% at 50% 0%, color-mix(in srgb, var(--cyan) 16%, transparent), transparent 70%), var(--bg); }
+    .qr-kicker { font-family: "Space Grotesk", var(--font); letter-spacing: .1em; color: var(--cyan); font-weight: 600; }
+    .qr-title { font-family: "Space Grotesk", var(--font); font-size: clamp(1.6rem, 4vw, 2.6rem); font-weight: 700; letter-spacing: -.01em; }
+    .qr-sub { color: var(--text-dim); font-size: clamp(1rem, 2.5vw, 1.3rem); }
+    .qr-card { background: #fff; padding: clamp(1rem, 3vw, 1.6rem); border-radius: 22px; box-shadow: 0 30px 80px -30px color-mix(in srgb, var(--cyan) 55%, transparent); }
+    .qr-card svg { width: clamp(220px, 55vw, 360px); height: auto; display: block; }
+    .qr-url { font-family: var(--font-mono, monospace); color: var(--text-dim); font-size: clamp(.85rem, 2vw, 1.05rem); word-break: break-all; max-width: 90vw; }
+    .qr-open { display: inline-flex; gap: .5rem; align-items: center; padding: .85em 1.6em; border-radius: 999px; background: linear-gradient(120deg, var(--cyan), var(--blue) 55%, var(--violet)); color: #04121a; font-weight: 700; box-shadow: 0 0 42px color-mix(in srgb, var(--cyan) 42%, transparent); }
+    .qr-back { position: fixed; top: 1rem; left: 1rem; color: var(--text-mute); font-size: .85rem; }
+    .qr-back:hover { color: var(--cyan); }
+  </style>
+</head>
+<body>
+  <a class="qr-back" href="index.html">← 소개로</a>
+  <p class="qr-kicker">GMST CLOUD · 공주마이스터고 클라우드컴퓨팅 기능반</p>
+  <h1 class="qr-title">📱 스캔하면 바로 열려요</h1>
+  <p class="qr-sub">휴대폰 카메라로 아래 QR을 비추세요.</p>
+  <div class="qr-card"><div id="qr" aria-label="사이트 QR 코드"></div></div>
+  <p class="qr-url" data-url>…</p>
+  <a class="qr-open" data-open href="index.html">사이트 바로 열기 →</a>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+  <script>
+    // qr.html 이 있는 디렉터리 = 사이트 루트 (Pages 하위경로/로컬 모두 자동 대응)
+    var siteUrl = new URL('.', location.href).href;
+    try {
+      var qr = qrcode(0, 'M');
+      qr.addData(siteUrl);
+      qr.make();
+      document.getElementById('qr').innerHTML = qr.createSvgTag({ cellSize: 8, margin: 1, scalable: true });
+    } catch (e) {
+      // 폴백: 외부 QR 이미지 서비스
+      document.getElementById('qr').innerHTML =
+        '<img alt="QR" width="320" height="320" src="https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=' + encodeURIComponent(siteUrl) + '">';
+    }
+    document.querySelector('[data-url]').textContent = siteUrl;
+    document.querySelector('[data-open]').href = siteUrl;
+  </script>
+</body>
+</html>

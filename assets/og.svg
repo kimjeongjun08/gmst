@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/><stop offset=".55" stop-color="#3b82f6"/><stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <radialGradient id="bg" cx="82%" cy="0%" r="95%">
+      <stop offset="0" stop-color="#14203c"/><stop offset="1" stop-color="#080c18"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <path d="M120 250 a44 44 0 0 1 7 -84 a58 58 0 0 1 110 15 a38 38 0 0 1 -11 67 z"
+        fill="none" stroke="url(#g)" stroke-width="7" stroke-linejoin="round"/>
+  <text x="72" y="400" font-family="'Space Grotesk',sans-serif" font-size="78" font-weight="700" fill="#eaf0fb">GMST CLOUD</text>
+  <text x="76" y="470" font-family="sans-serif" font-size="34" fill="#a6b5d1">공주마이스터고 클라우드컴퓨팅 기능반</text>
+  <text x="76" y="545" font-family="'JetBrains Mono',monospace" font-size="24" fill="#22d3ee">컴퓨터를 사는 시대에서, 빌리는 시대로.</text>
+</svg>

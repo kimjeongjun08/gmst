@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>체험 · 공주마이스터고 클라우드컴퓨팅 기능반</title>
+  <meta name="description" content="3과제 REST API를 브라우저에서 직접 호출해보는 체험 페이지." />
+  <meta name="theme-color" content="#080c18" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/reset.css" />
+  <link rel="stylesheet" href="styles/variables.css" />
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="styles/animations.css" />
+  <link rel="stylesheet" href="styles/playground.css" />
+  <script src="config.js"></script>
+</head>
+<body class="touch">
+  <canvas class="pg-fx" data-confetti aria-hidden="true"></canvas>
+
+  <header class="pg-nav">
+    <a class="pg-back" href="index.html">← 소개로 돌아가기</a>
+    <span class="pg-title">클라우드 기능경기 <b>체험</b></span>
+    <span class="pg-conn" data-conn data-state="checking"><i></i> 연결 확인 중…</span>
+  </header>
+
+  <main class="pg">
+    <section class="pg-intro">
+      <h1>직접 <em>REST API</em>를 호출해보세요</h1>
+      <p>3과제 아키텍처가 실제로 돌아갑니다. 버튼을 누르면 진짜 서버에 요청이 가고 응답이 돌아와요.
+         아래 ①~④만 눌러보면 1분이면 끝! 클라우드 기능경기가 "무엇을 만드는지" 손으로 느껴보세요.</p>
+      <ol class="pg-steps" data-steps>
+        <li data-step="users">① 사용자 목록</li>
+        <li data-step="adduser">② 사용자 추가</li>
+        <li data-step="products">③ 상품 조회</li>
+        <li data-step="stress">④ 부하 테스트</li>
+      </ol>
+    </section>
+
+    <div class="pg-grid">
+      <div class="pg-left">
+        <!-- 아키텍처 미니 다이어그램 (호출 시 점등) -->
+        <div class="pg-arch">
+          <svg viewBox="0 0 400 310" role="img" aria-label="3과제 아키텍처">
+            <path class="pg-edge" data-edge="client" d="M200,52 V80" />
+            <path class="pg-edge" data-edge="user" d="M200,122 V146 H70 V168" />
+            <path class="pg-edge" data-edge="product" d="M200,122 V168" />
+            <path class="pg-edge" data-edge="stress" d="M200,122 V146 H330 V168" />
+            <path class="pg-edge" data-edge="rdsU" d="M70,210 V236 H135 V258" />
+            <path class="pg-edge" data-edge="rdsP" d="M200,210 V236 H135 V258" />
+            <g class="pg-node" data-node="client"><rect x="150" y="12" width="100" height="40" rx="8"/><text x="200" y="37" text-anchor="middle">Client</text></g>
+            <g class="pg-node" data-node="endpoint"><rect x="150" y="82" width="100" height="40" rx="8"/><text x="200" y="107" text-anchor="middle">endpoint</text></g>
+            <g class="pg-node" data-node="user"><rect x="20" y="168" width="100" height="42" rx="8"/><text x="70" y="188" text-anchor="middle">user</text><text x="70" y="203" text-anchor="middle" style="font-size:9px">/v1/user</text></g>
+            <g class="pg-node" data-node="product"><rect x="150" y="168" width="100" height="42" rx="8"/><text x="200" y="188" text-anchor="middle">product</text><text x="200" y="203" text-anchor="middle" style="font-size:9px">/v1/product</text></g>
+            <g class="pg-node" data-node="stress"><rect x="280" y="168" width="100" height="42" rx="8"/><text x="330" y="188" text-anchor="middle">stress</text><text x="330" y="203" text-anchor="middle" style="font-size:9px">/v1/stress</text></g>
+            <g class="pg-node" data-node="rds"><rect x="85" y="258" width="100" height="40" rx="8"/><text x="135" y="283" text-anchor="middle">RDS (DB)</text></g>
+          </svg>
+        </div>
+
+        <!-- 엔드포인트 호출 패널 -->
+        <div class="pg-endpoints">
+          <div class="ep">
+            <button class="ep__send" data-call="GET /v1/user"><span class="m m--get">GET</span> /v1/user 호출</button>
+            <p class="ep__desc">① 전체 사용자 목록을 조회합니다.</p>
+          </div>
+          <div class="ep">
+            <div class="ep__row"><span class="m m--post">POST</span> /v1/user — 새 사용자 등록</div>
+            <input data-field="user-name" placeholder="이름 (예: 홍길동)" />
+            <input data-field="user-email" placeholder="이메일 (예: hong@gmst.kr)" />
+            <button class="ep__send" data-call="POST /v1/user">② 사용자 추가 →</button>
+          </div>
+          <div class="ep">
+            <button class="ep__send" data-call="GET /v1/product"><span class="m m--get">GET</span> /v1/product 호출</button>
+            <p class="ep__desc">③ 상품 목록 — 관계형 DB에서 소유자 이름을 JOIN해 함께 반환합니다.</p>
+          </div>
+          <div class="ep">
+            <div class="ep__row"><span class="m m--post">POST</span> /v1/product — 새 상품 등록</div>
+            <input data-field="prod-name" placeholder="상품명" />
+            <input data-field="prod-price" type="number" placeholder="가격(원)" />
+            <input data-field="prod-owner" type="number" placeholder="소유자 id (1~)" />
+            <button class="ep__send" data-call="POST /v1/product">상품 추가 →</button>
+          </div>
+          <div class="ep">
+            <div class="ep__row"><span class="m m--get">GET</span> /v1/stress — 부하 테스트</div>
+            <label>요청 수 n = <b data-stress-out>20</b><input type="range" data-field="stress-n" min="1" max="200" value="20" /></label>
+            <button class="ep__send" data-call="GET /v1/stress">④ 부하 테스트 실행 →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 응답 콘솔 -->
+      <div class="pg-console">
+        <div class="pg-console__bar"><span class="dotrow"><i></i><i></i><i></i></span> RESPONSE · 실제 서버 응답</div>
+        <div class="pg-reqline" data-reqline>왼쪽에서 요청을 하나 보내보세요.</div>
+        <pre class="pg-res" data-res><span class="pg-hint">여기에 서버가 돌려준 JSON 응답이 표시됩니다. 지연시간(latency)도 함께 측정돼요.</span></pre>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="scripts/playground.mjs"></script>
+</body>
+</html>
