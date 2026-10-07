@@ -201,6 +201,19 @@ body::after {
 .task--text { grid-template-columns: 1fr; }
 .task--text .task__body { max-width: 74ch; }
 
+/* 과제 2 — 4개 모듈 */
+.task2 { max-width: var(--maxw); margin: 0 auto 1.4rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--card-shadow); padding: clamp(1.4rem, 3vw, 2rem); }
+.task2__head { margin-bottom: 1.2rem; }
+.task2__head h3 { font-family: var(--font-disp); font-size: var(--s-2); margin: .7rem 0 .5rem; }
+.task2__head p { color: var(--text-dim); font-size: var(--s-0); }
+.task2__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.mod { border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--bg); padding: 1.2rem 1.3rem; }
+.mod__no { font-family: var(--font-disp); font-size: 1.05rem; color: var(--cyan); }
+.mod h4 { font-family: var(--font-disp); font-size: var(--s-1); margin: .3rem 0 .5rem; }
+.mod p { color: var(--text-dim); font-size: var(--s--1); }
+.mod__tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .8rem; }
+.mod__tags span { font-family: var(--font-mono); font-size: .68rem; color: var(--text-mute); border: 1px solid var(--line); border-radius: 999px; padding: .22rem .55rem; }
+
 /* 상금 */
 .prizes { max-width: var(--maxw); margin: 0 auto 1.3rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
 .prize { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: clamp(1.4rem, 3vw, 2rem); text-align: center; position: relative; overflow: hidden; }

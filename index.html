@@ -222,7 +222,7 @@
       <header class="shead" data-reveal>
         <p class="shead__kicker">우리가 푸는 과제</p>
         <h2 class="shead__title">말이 아니라,<br />이런 걸 <em>실제로 만든다</em></h2>
-        <p class="shead__lead">대회 과제는 실서비스 수준의 클라우드 시스템을 시간 안에 구축하는 일입니다. 실제 과제 두 가지를 소개합니다.</p>
+        <p class="shead__lead">대회 과제는 실서비스 수준의 클라우드 시스템을 시간 안에 구축하는 일입니다. 실제 과제 세 가지를 소개합니다.</p>
       </header>
 
       <article class="task" data-reveal>
@@ -238,16 +238,43 @@
         </div>
       </article>
 
-      <article class="task task--text" data-reveal>
-        <div class="task__body">
-          <span class="task__badge">과제 2 · 예시</span>
-          <h3>자동 배포 파이프라인(CI/CD) 구축</h3>
-          <p>개발자가 코드를 올리면 빌드 → 테스트 → 배포가 자동으로 이어지도록 구성합니다.
-             사람이 손으로 배포하지 않아도 항상 최신 버전이 안전하게 반영됩니다.
-             (예: 코드 푸시 → 자동 빌드 → <span class="term" data-k="컨테이너">컨테이너</span> 이미지 생성 → 서버에 무중단 배포)</p>
-          <div class="task__tags"><span>CI/CD</span><span>자동화</span><span>컨테이너</span><span>무중단 배포</span></div>
+      <div class="task2" data-reveal>
+        <div class="task2__head">
+          <span class="task__badge">과제 2 · Small Challenge</span>
+          <h3>4개 모듈을 4시간 안에</h3>
+          <p>성격이 전혀 다른 4개의 클라우드 시스템을, 각각 다른 AWS 리전에서 제한 시간 안에 완성하는 종합 과제입니다.</p>
         </div>
-      </article>
+        <div class="task2__grid">
+          <article class="mod">
+            <span class="mod__no">01</span>
+            <h4>CDN · 이미지 자동 최적화</h4>
+            <p>접속한 기기가 휴대폰이면 작은 이미지, PC면 큰 이미지를 자동으로 골라 보여줍니다.
+               전 세계에 퍼진 <span class="term" data-k="CloudFront">CloudFront</span> 캐시로 빠르게 전달하고, 기기를 감지해 이미지 크기를 실시간으로 바꿉니다.</p>
+            <div class="mod__tags"><span>S3</span><span>CloudFront</span><span>Lambda@Edge</span></div>
+          </article>
+          <article class="mod">
+            <span class="mod__no">02</span>
+            <h4>Keycloak · 통합 로그인·권한</h4>
+            <p>회사 자체 로그인 서버를 직접 세워, 한 번 로그인하면 AWS에 바로 들어가게(SSO) 연결합니다.
+               개발팀·인프라팀 등 소속에 따라 할 수 있는 작업 권한을 다르게 부여합니다.</p>
+            <div class="mod__tags"><span>VPC</span><span>EC2</span><span>Keycloak</span><span>SAML</span><span>IAM</span></div>
+          </article>
+          <article class="mod">
+            <span class="mod__no">03</span>
+            <h4>Container Logging · 로그 모니터링</h4>
+            <p>여러 서버에서 쏟아지는 로그를 한곳에 모아, 대시보드에서 에러·경고를 색깔 그래프로 한눈에 봅니다.
+               쿠버네티스(<span class="term" data-k="EKS">EKS</span>) 위에서 수집→가공→저장→시각화 파이프라인을 만듭니다.</p>
+            <div class="mod__tags"><span>EKS</span><span>Fluent Bit</span><span>Loki</span><span>Prometheus</span><span>Grafana</span></div>
+          </article>
+          <article class="mod">
+            <span class="mod__no">04</span>
+            <h4>Workflow · 주문 자동 처리</h4>
+            <p>주문 파일이 올라오면 사람 손 없이 검증 → 결제 → 재고 차감 → 기록까지 자동으로 처리됩니다.
+               여러 주문을 동시에 병렬 처리하고, 실패하면 자동으로 재시도합니다.</p>
+            <div class="mod__tags"><span>S3</span><span>Step Functions</span><span>Lambda</span><span>DynamoDB</span></div>
+          </article>
+        </div>
+      </div>
 
       <article class="task task--rev" data-reveal>
         <div class="task__img"><img src="assets/task3.png" alt="과제 3 아키텍처" loading="lazy" /></div>
